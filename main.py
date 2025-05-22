@@ -42,3 +42,5 @@ def main():
     print("Haoran Zu - Practice Project - 01\n" + "-"*50)
     data_file = "D:/AC-CP/Level4/programming language/Assignment/Nitrogen oxide emissions by facility.csv"
     facilities = read_data_records(data_file)
+    for record in facilities:
+        print(record)
