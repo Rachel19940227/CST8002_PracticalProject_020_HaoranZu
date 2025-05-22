@@ -37,3 +37,8 @@ def read_data_records(filename):
     except Exception as e:
         print(f"An error occurred: {e}")
     return records
+
+def main():
+    print("Haoran Zu - Practice Project - 01\n" + "-"*50)
+    data_file = "D:/AC-CP/Level4/programming language/Assignment/Nitrogen oxide emissions by facility.csv"
+    facilities = read_data_records(data_file)
