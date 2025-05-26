@@ -8,6 +8,7 @@ import csv
 from data_record import DataRecord
 
 def read_data_records(filename):
+    #Reads emission data from a CSV file and converts rows into DataRecord objects.
     records = []
     try:
         with open(filename, mode='r', encoding='windows-1252') as file:
@@ -15,6 +16,7 @@ def read_data_records(filename):
             for i, row in enumerate(reader):
                 if i >= 4:  # 只加载前4行作为样例
                     break
+                #Create a DataRecord instance using values from the current row
                 record = DataRecord(
                     npri_id=row["NPRI ID"],
                     facility_name=row["Facility name"],
@@ -39,8 +41,13 @@ def read_data_records(filename):
     return records
 
 def main():
+    #Main function to read data records and print them
     print("Haoran Zu - Practice Project - 01\n" + "-"*50)
     data_file = "D:/AC-CP/Level4/programming language/Assignment/Nitrogen oxide emissions by facility.csv"
     facilities = read_data_records(data_file)
     for record in facilities:
         print(record)
+
+if __name__ == "__main__":
+    main()
+# This code is a simple Python script that reads a CSV file containing data about nitrogen oxide emissions by facility.
