@@ -14,7 +14,7 @@ def read_data_records(filename):
         with open(filename, mode='r', encoding='windows-1252') as file:
             reader = csv.DictReader(file)
             for i, row in enumerate(reader):
-                if i >= 4:  # 只加载前4行作为样例
+                if i >= 100:  # 只加载前100行作为样例
                     break
                 #Create a DataRecord instance using values from the current row
                 record = DataRecord(
