@@ -5,7 +5,7 @@ Due Date: 2025-05-25
 Author: Haoran Zu
 """
 import csv
-from data_record import DataRecord
+from Model.data_record import DataRecord
 
 def read_data_records(filename):
     #Reads emission data from a CSV file and converts rows into DataRecord objects.
@@ -42,7 +42,7 @@ def read_data_records(filename):
 
 def main():
     #Main function to read data records and print them
-    print("Haoran Zu - Practice Project - 01\n" + "-"*50)
+    print("Haoran Zu - Practice Project - 02\n" + "-"*50)
     data_file = "D:/AC-CP/Level4/programming language/Assignment/Nitrogen oxide emissions by facility.csv"
     facilities = read_data_records(data_file)
     for record in facilities:
