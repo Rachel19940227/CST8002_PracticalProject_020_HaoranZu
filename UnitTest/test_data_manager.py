@@ -15,7 +15,8 @@ class TestDataManager(unittest.TestCase):
     def setUpClass(cls):
         """Prints header when test class starts"""
         print("\n=== Program by Haoran Zu ===")
-    
+        # add my name as input
+        
     def test_add_record(self):
         # initialize DataManager
         manager = DataManager()
