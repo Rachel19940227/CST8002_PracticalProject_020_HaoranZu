@@ -116,7 +116,7 @@ class DataController:
                     ConsoleView.show_message("Please enter a valid number.")
 
             elif choice == "7":
-                # Deletes a record by index
+                # Deletes a record by index, from the simple data structure in memory
                 index = int(input("Enter record index to delete: "))
                 if self.manager.delete_record(index):
                     ConsoleView.show_message("Deleted.")
