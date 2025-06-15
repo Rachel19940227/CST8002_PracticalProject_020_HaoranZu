@@ -11,12 +11,17 @@ from BusinessLayer.data_manager import DataManager
 from PersistenceLayer.data_record import DataRecord
 
 class TestDataManager(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        """Prints header when test class starts"""
+        print("\n=== Program by Haoran Zu ===")
+    
     def test_add_record(self):
-        # 准备：实例化 DataManager
+        # initialize DataManager
         manager = DataManager()
         original_count = len(manager.get_all())
 
-        # 创建一个新的 DataRecord
+        # create a new DataRecord
         new_record = DataRecord(
             npri_id="0000001",
             facility_name="Test Facility",
@@ -34,13 +39,13 @@ class TestDataManager(unittest.TestCase):
             report_year="2023"
         )
 
-        # 调用 add_record 方法
+        # call add_record method
         manager.add_record(new_record)
 
-        # 断言：数量是否增加
+        # assert if the record added
         self.assertEqual(len(manager.get_all()), original_count + 1)
 
-        # 断言：最后一项是否为新添加的记录
+        # assert if added the last new record
         self.assertEqual(manager.get_all()[-1].facility_name, "Test Facility")
 
 if __name__ == '__main__':

@@ -123,7 +123,7 @@ class DataController:
                 else:
                     ConsoleView.show_message("Invalid index.")
 
-            elif choice == "0":
+            elif choice == "8":
                 # Exits the application
                 ConsoleView.show_message("Goodbye!")
                 break
