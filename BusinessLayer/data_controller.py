@@ -57,7 +57,7 @@ class DataController:
                     ConsoleView.show_message("Invalid index.")
 
             elif choice == "5":
-                # Adds a new record using user input
+                # Adds a new record using user input, I choose some of the info, not all
                 name = input("Facility name: ").strip()
                 company = input("Company name: ").strip()
                 address = input("Address: ").strip()
