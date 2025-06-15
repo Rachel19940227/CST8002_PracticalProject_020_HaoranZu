@@ -44,7 +44,7 @@ class DataController:
                 print(f"Data saved to {filename}")
 
             elif choice == "3":
-                # Displays all records
+                # Displays all records from 1-100
                 ConsoleView.show_all(self.manager.get_all())
 
             elif choice == "4":
