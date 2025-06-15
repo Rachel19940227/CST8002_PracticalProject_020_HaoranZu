@@ -65,7 +65,7 @@ class DataController:
                 province = input("Province: ").strip()
 
                 new_record = DataRecord(
-                    npri_id="",  # Can be auto-generated if needed
+                    npri_id="",  
                     facility_name=name,
                     company=company,
                     address=address,
@@ -80,7 +80,7 @@ class DataController:
                 ConsoleView.show_message("Record added.")
 
             elif choice == "6":
-                # Updates an existing record by index
+                # Updates an existing record by index, index from 0-99
                 try:
                     index = int(input("Enter record index to update: "))
                     existing = self.manager.get_by_index(index)
