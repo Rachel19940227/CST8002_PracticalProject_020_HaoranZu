@@ -39,7 +39,7 @@ class DataController:
                 ConsoleView.show_message("Reload successful.")
 
             elif choice == "2":
-                # Saves current data to a new file
+                # Saves current data to a new file with UUID name
                 filename = self.manager.repo.save_to_file()
                 print(f"Data saved to {filename}")
 
