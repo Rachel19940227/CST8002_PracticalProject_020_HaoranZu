@@ -6,6 +6,7 @@ Author: Haoran Zu
 Description: Part of solution for Practical Project 2
 """
 
+from PersistenceLayer.base_record import BaseRecord
 from PersistenceLayer.repository import DataRepository
 
 class DataManager:
@@ -22,6 +23,8 @@ class DataManager:
         self.repo = DataRepository()  # Instantiate the repository
         self.data_file = "data/Nitrogen oxide emissions by facility.csv"
         self.reload_data()
+        self.records: list[BaseRecord] = []
+        # add record list
 
     def reload_data(self):
         """

@@ -7,7 +7,10 @@ Description: Part of solution for Practical Project 2
 """
 
 
-from .data_manager import DataManager
+from PersistenceLayer.base_record import BaseRecord
+from PersistenceLayer.data_record import DataRecord
+from PersistenceLayer.detailed_record import DetailedRecord
+
 from PresentationLayer.view import ConsoleView
 from PersistenceLayer.data_record import DataRecord
 
