@@ -1,9 +1,9 @@
 """
 Course: CST8002 Programming Language Research Project
-Professor: Stanley Pieda
-Due Date: 2025-06-15
+Professor: Tyler DeLa
+Due Date: 2025-07-13
 Author: Haoran Zu
-Description: Part of solution for Practical Project 3.
+Description: Part of solution for Practical Project 3
 """
 
 from PersistenceLayer.data_record import DataRecord

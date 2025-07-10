@@ -133,13 +133,17 @@ class DataController:
                 break
 
             elif choice == "9":
+                # Display sorting options to the user
                 print("Sort records by:")
                 print("1. Facility Name")
                 print("2. Company Name")
                 print("3. City")
                 print("4. Emissions")
+
+                # Get user's sorting field choice
                 choice = input("Choose a field (1-4): ").strip()
 
+                # Map numeric choices to corresponding DataRecord attribute names
                 sort_field_map = {
                     "1": "facility_name",
                     "2": "company",
@@ -147,12 +151,15 @@ class DataController:
                     "4": "emissions"
                 }
 
+                # Get the actual key field for sorting based on user input
                 key_field = sort_field_map.get(choice)
 
                 if key_field:
+                    # Call the sorting function from DataManager and display results
                     sorted_list = self.manager.sort_records(key_field=key_field)
                     ConsoleView.show_all(sorted_list)
                 else:
+                    # Show an error message if the input was invalid
                     ConsoleView.show_message("Invalid choice. No sorting performed.")
 
 
