@@ -1,17 +1,14 @@
 """
 Course: CST8002 Programming Language Research Project
-Professor: Tyler DeLay
-Due Date: 2025-07-13
+Professor: Stanley Pieda
+Due Date: 2025-06-15
 Author: Haoran Zu
-Description: Part of solution for Practical Project 3
+Description: Part of solution for Practical Project 2
 """
 
-from PersistenceLayer.base_record import BaseRecord
-
-
-class DataRecord(BaseRecord):
+class DataRecord:
     """
-    Represents a single facility's emissions data record.Inheritance from base record
+    Represents a single facility's emissions data record.
 
     Attributes:
         npri_id (str): NPRI identifier for the facility.
@@ -55,17 +52,17 @@ class DataRecord(BaseRecord):
     def __str__(self):
         """
         Returns a human-readable summary of the data record.
+
+        Returns:
+            str: A brief description of the facility and its emissions.
         """
         return f"{self.facility_name} ({self.company}) - {self.city}, {self.province} | {self.emissions} {self.units}"
 
     def to_csv_row(self):
         """
         Converts the data record into a single CSV-formatted string.
+
+        Returns:
+            str: The record represented as a comma-separated line.
         """
         return f"{self.npri_id},{self.facility_name},{self.company},{self.address},{self.city},{self.province},{self.postal_code},{self.latitude},{self.longitude},{self.emissions},{self.units},{self.facility_details},{self.facility_info},{self.report_year}"
-
-    def display(self):
-        """
-        Displays the record in a basic format (polymorphic method).
-        """
-        print(str(self))

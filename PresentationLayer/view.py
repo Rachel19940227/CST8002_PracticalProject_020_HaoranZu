@@ -3,11 +3,12 @@ Course: CST8002 Programming Language Research Project
 Professor: Stanley Pieda
 Due Date: 2025-06-15
 Author: Haoran Zu
-Description: Part of solution for Practical Project 2
+Description: Part of solution for Practical Project 3.
 """
 
-
 from PersistenceLayer.data_record import DataRecord
+from rich.console import Console
+from rich.table import Table
 
 class ConsoleView:
     """
@@ -29,6 +30,7 @@ class ConsoleView:
         print("6. Edit Record")
         print("7. Delete Record")
         print("8. Exit")
+        print("9. Sort by which field")
 
     @staticmethod
     def show_record(record: DataRecord):
@@ -43,13 +45,33 @@ class ConsoleView:
     @staticmethod
     def show_all(records):
         """
-        Displays all DataRecord objects from a list.
+        Displays all DataRecord (or BaseRecord) objects from a list in a formatted table.
 
         Args:
-            records (list): A list of DataRecord instances.
+            records (list): A list of DataRecord or BaseRecord instances.
         """
-        for r in records:
-            ConsoleView.show_record(r)
+        console = Console()
+        table = Table(title="Emission Records - Haoran Zu")
+
+        table.add_column("Index", style="dim", width=6)
+        table.add_column("Facility", style="cyan", no_wrap=True)
+        table.add_column("Company", style="magenta")
+        table.add_column("City", style="green")
+        table.add_column("Emissions", style="yellow")
+
+        for i, r in enumerate(records):
+            # Try to display important fields; fallback to string if attribute missing
+            try:
+                facility = getattr(r, "facility_name", str(r))
+                company = getattr(r, "company", "N/A")
+                city = getattr(r, "city", "N/A")
+                emissions = getattr(r, "emissions", "N/A")
+            except Exception:
+                facility = company = city = emissions = "Error"
+
+            table.add_row(str(i), facility, company, city, emissions)
+
+        console.print(table)
 
     @staticmethod
     def get_input(prompt: str):

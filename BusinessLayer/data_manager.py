@@ -6,7 +6,6 @@ Author: Haoran Zu
 Description: Part of solution for Practical Project 2
 """
 
-from PersistenceLayer.base_record import BaseRecord
 from PersistenceLayer.repository import DataRepository
 
 class DataManager:
@@ -23,8 +22,6 @@ class DataManager:
         self.repo = DataRepository()  # Instantiate the repository
         self.data_file = "data/Nitrogen oxide emissions by facility.csv"
         self.reload_data()
-        self.records: list[BaseRecord] = []
-        # add record list
 
     def reload_data(self):
         """
@@ -96,3 +93,21 @@ class DataManager:
             del self.data[index]
             return True
         return False
+
+    def sort_records(self, key_field: str, reverse: bool = False):
+        """
+        Sorts the in-memory list of records (List) by the given field using Python's list sort.
+
+        Args:
+            key_field (str): The attribute name to sort by.
+            reverse (bool): Sort descending if True, ascending if False.
+
+        Returns:
+            list: The sorted list of DataRecord objects.
+        """
+        try:
+            self.data.sort(key=lambda r: getattr(r, key_field), reverse=reverse)
+        except AttributeError:
+            print(f"[Error] Invalid field name: '{key_field}'")
+        return self.data
+

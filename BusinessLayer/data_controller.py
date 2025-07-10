@@ -7,9 +7,9 @@ Description: Part of solution for Practical Project 2
 """
 
 
-from PersistenceLayer.base_record import BaseRecord
+
+from BusinessLayer.data_manager import DataManager
 from PersistenceLayer.data_record import DataRecord
-from PersistenceLayer.detailed_record import DetailedRecord
 
 from PresentationLayer.view import ConsoleView
 from PersistenceLayer.data_record import DataRecord
@@ -130,6 +130,30 @@ class DataController:
                 # Exits the application
                 ConsoleView.show_message("Goodbye!")
                 break
+
+            elif choice == "9":
+                print("Sort records by:")
+                print("1. Facility Name")
+                print("2. Company Name")
+                print("3. City")
+                print("4. Emissions")
+                choice = input("Choose a field (1-4): ").strip()
+
+                sort_field_map = {
+                    "1": "facility_name",
+                    "2": "company",
+                    "3": "city",
+                    "4": "emissions"
+                }
+
+                key_field = sort_field_map.get(choice)
+
+                if key_field:
+                    sorted_list = self.manager.sort_records(key_field=key_field)
+                    ConsoleView.show_all(sorted_list)
+                else:
+                    ConsoleView.show_message("Invalid choice. No sorting performed.")
+
 
             else:
                 ConsoleView.show_message("Invalid option.")
