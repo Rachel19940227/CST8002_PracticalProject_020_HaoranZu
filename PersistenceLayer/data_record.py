@@ -11,7 +11,7 @@ from PersistenceLayer.base_record import BaseRecord
 
 class DataRecord(BaseRecord):
     """
-    Represents a single facility's emissions data record.
+    Represents a single facility's emissions data record.Inheritance from base record
 
     Attributes:
         npri_id (str): NPRI identifier for the facility.
