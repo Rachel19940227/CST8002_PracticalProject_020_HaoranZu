@@ -111,3 +111,6 @@ class DataManager:
             print(f"[Error] Invalid field name: '{key_field}'")
         return self.data
 
+    def sort_records_multiple(self, key):
+        return sorted(self.data, key=key)
+
