@@ -29,8 +29,9 @@ class ConsoleView:
         print("5. Add New Record")
         print("6. Edit Record")
         print("7. Delete Record")
-        print("8. Exit")
-        print("9. Sort by which field")
+        print("8. Sort records")
+        print("9. Exit")
+        
 
     @staticmethod
     def show_record(record: DataRecord):
@@ -45,8 +46,8 @@ class ConsoleView:
     @staticmethod
     def show_all(records):
         """
-        Displays all DataRecord (or BaseRecord) objects from a list in a formatted table.
-        I change the sorting method that just show 4 coloums to make it easier to read.
+        Displays all DataRecord objects from a list in a formatted table.
+        I change the sorting method that make it easier to read.
 
         Args:
             records (list): A list of DataRecord or BaseRecord instances.
@@ -58,6 +59,8 @@ class ConsoleView:
         table.add_column("Facility", style="cyan", no_wrap=True)
         table.add_column("Company", style="magenta")
         table.add_column("City", style="green")
+        table.add_column("Province", style="blue") # add Province
+        table.add_column("Year", style="bold cyan") #add Year
         table.add_column("Emissions", style="yellow")
 
         for i, r in enumerate(records):
@@ -66,11 +69,13 @@ class ConsoleView:
                 facility = getattr(r, "facility_name", str(r))
                 company = getattr(r, "company", "N/A")
                 city = getattr(r, "city", "N/A")
+                province = getattr(r, "province", "N/A")
+                report_year = getattr(r, "report_year", "N/A")
                 emissions = getattr(r, "emissions", "N/A")
             except Exception:
                 facility = company = city = emissions = "Error"
 
-            table.add_row(str(i), facility, company, city, emissions)
+            table.add_row(str(i), facility, company, city, province, report_year, emissions)
 
         console.print(table)
 
@@ -96,3 +101,23 @@ class ConsoleView:
             message (str): The message to display.
         """
         print(message)
+
+    @staticmethod
+    def prompt_sorting_mode():
+        """
+        Asks user to choose between single or multiple column sorting.
+
+        Returns:
+            str: 'single' or 'multiple'
+        """
+        print("Select sorting mode:")
+        print("1. Single column sorting")
+        print("2. Multiple column sorting")
+        while True:
+            choice = input("Enter choice (1 or 2): ").strip()
+            if choice == '1':
+                return 'single'
+            elif choice == '2':
+                return 'multiple'
+            print("Invalid input. Please enter 1 or 2.")
+

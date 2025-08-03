@@ -15,6 +15,19 @@ from PersistenceLayer.data_record import DataRecord
 from PresentationLayer.view import ConsoleView
 from PersistenceLayer.data_record import DataRecord
 
+def safe_int(val):
+    try:
+        return int(val)
+    except (ValueError, TypeError):
+        return 0
+
+def safe_float(val):
+    try:
+        return float(val)
+    except (ValueError, TypeError):
+        return 0.0
+
+
 class DataController:
     """
     Acts as the controller in the architecture.
@@ -127,40 +140,57 @@ class DataController:
                 else:
                     ConsoleView.show_message("Invalid index.")
 
-            elif choice == "8":
+            elif choice == "9":
                 # Exits the application
                 ConsoleView.show_message("Goodbye!")
                 break
 
-            elif choice == "9":
-                # Display sorting options to the user
-                print("Sort records by:")
-                print("1. Facility Name")
-                print("2. Company Name")
-                print("3. City")
-                print("4. Emissions")
+            elif choice == "8":
+            # Ask the user to choose sorting mode
+                mode = ConsoleView.prompt_sorting_mode()
 
-                # Get user's sorting field choice
-                choice = input("Choose a field (1-4): ").strip()
+                if mode == "single":
+                    # Display sorting options to the user
+                    print("Sort records by:")
+                    print("1. Facility Name")
+                    print("2. Company Name")
+                    print("3. City")
+                    print("4. Emissions")
 
-                # Map numeric choices to corresponding DataRecord attribute names
-                sort_field_map = {
-                    "1": "facility_name",
-                    "2": "company",
-                    "3": "city",
-                    "4": "emissions"
-                }
+                    # Get user's sorting field choice
+                    field_choice = input("Choose a field (1-4): ").strip()
 
-                # Get the actual key field for sorting based on user input
-                key_field = sort_field_map.get(choice)
+                    # Map numeric choices to corresponding DataRecord attribute names
+                    sort_field_map = {
+                        "1": "facility_name",
+                        "2": "company",
+                        "3": "city",
+                        "4": "emissions"
+                    }
 
-                if key_field:
-                    # Call the sorting function from DataManager and display results
-                    sorted_list = self.manager.sort_records(key_field=key_field)
+                    # Get the actual key field for sorting based on user input
+                    key_field = sort_field_map.get(field_choice)
+
+                    if key_field:
+                        # Call the sorting function from DataManager and display results
+                        sorted_list = self.manager.sort_records(key_field=key_field)
+                        ConsoleView.show_all(sorted_list)
+                    else:
+                        ConsoleView.show_message("Invalid field choice. No sorting performed.")
+
+                elif mode == "multiple":
+                    # Perform fixed multi-column sort: report_year, province, city, emissions
+                    sorted_list = self.manager.sort_records_multiple(
+                        key=lambda x: (
+                            safe_int(x.report_year),
+                            x.province or "",
+                            x.city or "",
+                            safe_float(x.emissions)
+                        )
+                    )
+
+                    ConsoleView.show_message("Sorted by: report_year → province → city → emissions")
                     ConsoleView.show_all(sorted_list)
-                else:
-                    # Show an error message if the input was invalid
-                    ConsoleView.show_message("Invalid choice. No sorting performed.")
 
 
             else:
