@@ -112,5 +112,21 @@ class DataManager:
         return self.data
 
     def sort_records_multiple(self, key):
+        """
+        Sorts the records stored in self.data using a custom key function.
+
+        Args:
+            key (function): A function that takes a record as input and returns 
+                            a value (or tuple of values) used for sorting.
+
+        Returns:
+            list: A new list of records sorted according to the key function.
+
+        Example:
+            # Sort by report_year and then by province:
+            sorted_records = manager.sort_records_multiple(
+                key=lambda r: (r.report_year, r.province)
+            )
+        """
         return sorted(self.data, key=key)
 
