@@ -47,7 +47,7 @@ class ConsoleView:
     def show_all(records):
         """
         Displays all DataRecord objects from a list in a formatted table.
-        I change the sorting method that just show 4 coloums to make it easier to read.
+        I change the sorting method that make it easier to read.
 
         Args:
             records (list): A list of DataRecord or BaseRecord instances.
